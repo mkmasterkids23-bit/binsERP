@@ -349,4 +349,142 @@ document.addEventListener('DOMContentLoaded', () => {
   initMagneticButtons();
   initTiltCards();
   initStaggerReveal();
+  initParallax();
+  initTypingEffect();
+  initSmoothReveal();
+  initProgressBars();
+  initImageLazyLoad();
 });
+
+// Parallax Scrolling Effect
+const initParallax = () => {
+  const parallaxElements = document.querySelectorAll('.parallax-section');
+  
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    
+    parallaxElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const speed = el.dataset.speed || 0.3;
+      const yPos = -(scrolled * speed);
+      el.style.transform = `translateY(${yPos}px)`;
+    });
+  });
+};
+
+// Typing Effect for Hero
+const initTypingEffect = () => {
+  const typingElements = document.querySelectorAll('.typing-effect');
+  
+  typingElements.forEach(el => {
+    const text = el.textContent;
+    el.textContent = '';
+    el.style.opacity = '1';
+    
+    let i = 0;
+    const type = () => {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 80);
+      }
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        type();
+        observer.disconnect();
+      }
+    });
+    
+    observer.observe(el);
+  });
+};
+
+// Smooth Reveal on Scroll
+const initSmoothReveal = () => {
+  const elements = document.querySelectorAll('.reveal-blur, .scale-in, .slide-up, .card-entrance, .glow-scroll, .section-fade');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  
+  elements.forEach(el => observer.observe(el));
+};
+
+// Progress Bars Animation
+const initProgressBars = () => {
+  const bars = document.querySelectorAll('.progress-bar-fill');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  bars.forEach(bar => observer.observe(bar));
+};
+
+// Image Lazy Load with Smooth Fade
+const initImageLazyLoad = () => {
+  const images = document.querySelectorAll('img[data-src]');
+  
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.onload = () => img.classList.add('loaded');
+        imageObserver.unobserve(img);
+      }
+    });
+  });
+  
+  images.forEach(img => imageObserver.observe(img));
+};
+
+// Cursor Follower (Desktop only)
+const initCursorFollower = () => {
+  if (window.innerWidth < 768) return;
+  
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor-follower';
+  cursor.innerHTML = '<div class="cursor-dot"></div><div class="cursor-ring"></div>';
+  document.body.appendChild(cursor);
+  
+  const dot = cursor.querySelector('.cursor-dot');
+  const ring = cursor.querySelector('.cursor-ring');
+  
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+  });
+  
+  const animateRing = () => {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    ring.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`;
+    requestAnimationFrame(animateRing);
+  };
+  animateRing();
+  
+  // Add hover effects for interactive elements
+  document.querySelectorAll('a, button, .card-float, .btn').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+  });
+};
+
+// Initialize cursor on load
+document.addEventListener('DOMContentLoaded', initCursorFollower);
