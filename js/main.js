@@ -205,6 +205,132 @@ const initGlobalParticles = () => {
   }
 };
 
+// Scroll Progress Indicator
+const initScrollProgress = () => {
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.prepend(bar);
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    bar.style.width = progress + '%';
+  });
+};
+
+// Ripple Effect on Buttons
+const initRipple = () => {
+  document.querySelectorAll('.btn, .btn-primary, .btn-outline').forEach(btn => {
+    btn.classList.add('ripple');
+  });
+};
+
+// Section Transition Observer
+const initSectionTransitions = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.section-left, .section-right, .section-scale, .section-zoom').forEach(el => {
+    observer.observe(el);
+  });
+};
+
+// Magnetic Button Effect
+const initMagneticButtons = () => {
+  document.querySelectorAll('.btn-primary, .hero-btn-primary').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
+    });
+  });
+};
+
+// Tilt Effect on Cards
+const initTiltCards = () => {
+  document.querySelectorAll('.card-float').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const rotateX = (y - 0.5) * -10;
+      const rotateY = (x - 0.5) * 10;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+    });
+  });
+};
+
+// Smooth Counter Animation with Easing
+const animateCountersSmooth = () => {
+  const counters = document.querySelectorAll('.counter');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = parseInt(entry.target.getAttribute('data-target'));
+        const suffix = entry.target.getAttribute('data-suffix') || '';
+        const duration = 2000;
+        const start = performance.now();
+
+        const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+
+        const animate = (currentTime) => {
+          const elapsed = currentTime - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const easedProgress = easeOutQuart(progress);
+          const current = Math.floor(easedProgress * target);
+
+          entry.target.textContent = current + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            entry.target.textContent = target + suffix;
+          }
+        };
+
+        requestAnimationFrame(animate);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(counter => observer.observe(counter));
+};
+
+// Stagger children reveal
+const initStaggerReveal = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const children = entry.target.querySelectorAll('.reveal');
+        children.forEach((child, i) => {
+          setTimeout(() => {
+            child.classList.add('visible');
+          }, i * 80);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.stagger-children').forEach(el => observer.observe(el));
+};
+
 // Init
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
@@ -213,8 +339,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initPricingTabs();
   initSmoothScroll();
   initHeaderScroll();
-  animateCounters();
+  animateCountersSmooth();
   initDocsSidebar();
   initHeroParticles();
   initGlobalParticles();
+  initScrollProgress();
+  initRipple();
+  initSectionTransitions();
+  initMagneticButtons();
+  initTiltCards();
+  initStaggerReveal();
 });
