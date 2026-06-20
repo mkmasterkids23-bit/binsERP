@@ -1213,7 +1213,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer-brand p {
   font-size: 0.875rem;
   color: var(--text-secondary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+.footer-brand-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--lime);
+  transition: color 0.2s;
+}
+.footer-brand-name:hover {
+  color: var(--lime-dark);
 }
 
 .footer-col h4 {
