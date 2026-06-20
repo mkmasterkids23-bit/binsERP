@@ -366,71 +366,29 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: linear-gradient(to bottom, transparent, #111);
 }
 
-/* Animated Gradient Dots Background */
-.hero-dots-bg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
+/* Hero Logo */
+.hero-logo-wrap {
+  margin-bottom: 1.5rem;
+  animation: heroFadeSlideUp 0.8s var(--ease-smooth) 0.1s both;
 }
 
-.hero-dot {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.35;
-  animation: floatDot var(--duration) ease-in-out infinite;
-  animation-delay: var(--delay);
+.hero-logo {
+  height: 60px;
+  width: auto;
+  padding: 0.75rem 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
-.hero-dot-1 {
-  width: 300px;
-  height: 300px;
-  background: #C8E614;
-  top: 15%;
-  left: 15%;
-  --duration: 10s;
-  --delay: 0s;
+[data-theme="dark"] .hero-logo {
+  background: #1a1a1a;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 
-.hero-dot-2 {
-  width: 280px;
-  height: 280px;
-  background: #06b6d4;
-  top: 50%;
-  right: 20%;
-  --duration: 12s;
-  --delay: 1s;
-}
-
-.hero-dot-3 {
-  width: 250px;
-  height: 250px;
-  background: #a78bfa;
-  bottom: 20%;
-  left: 35%;
-  --duration: 14s;
-  --delay: 2s;
-}
-
-.hero-dot-4 {
-  width: 200px;
-  height: 200px;
-  background: #f9a8d4;
-  top: 35%;
-  right: 35%;
-  --duration: 11s;
-  --delay: 0.5s;
-}
-
-[data-theme="dark"] .hero-dot {
-  opacity: 0.2;
-  filter: blur(120px);
-}
-
-@keyframes floatDot {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-15px, 25px) scale(0.95); }
+@keyframes heroFadeSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Small Floating Particles */
@@ -485,7 +443,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: 9999px;
   margin-bottom: 1.5rem;
-  animation: fadeInUp 0.6s ease 0.2s both;
+  animation: heroFadeSlideUp 0.6s var(--ease-smooth) 0.2s both;
 }
 
 [data-theme="dark"] .hero-glass-badge {
@@ -514,7 +472,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Main Heading */
 .hero-main-heading {
   margin-bottom: 1.5rem;
-  animation: fadeInUp 0.8s ease 0.4s both;
+  animation: heroFadeSlideUp 0.8s var(--ease-smooth) 0.4s both;
 }
 
 .hero-line-thin {
@@ -548,7 +506,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   line-height: 1.7;
   margin-bottom: 2rem;
   max-width: 450px;
-  animation: fadeInUp 0.6s ease 0.8s both;
+  animation: heroFadeSlideUp 0.6s var(--ease-smooth) 0.8s both;
 }
 
 [data-theme="dark"] .hero-desc-text {
@@ -560,7 +518,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   gap: 1rem;
-  animation: fadeInUp 0.6s ease 1s both;
+  animation: heroFadeSlideUp 0.6s var(--ease-smooth) 1s both;
 }
 
 .hero-btn-primary {
@@ -1204,7 +1162,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .footer-top {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 3rem;
   margin-bottom: 2rem;
 }
