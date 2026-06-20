@@ -135,10 +135,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .logo { display: flex; align-items: center; }
-.logo img { height: 40px; width: auto; }
+.logo img { height: 40px; width: auto; padding: 0.4rem 0.75rem; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
 .logo .dark-logo { display: none; }
 [data-theme="dark"] .logo .light-logo { display: none; }
 [data-theme="dark"] .logo .dark-logo { display: block; }
+[data-theme="dark"] .logo img { background: #1a1a1a; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
 
 .nav-links {
   display: flex;
@@ -1168,6 +1169,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .footer-brand .logo { margin-bottom: 0.75rem; }
+.footer-brand .logo img { height: 45px; padding: 0.5rem 1rem; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+[data-theme="dark"] .footer-brand .logo img { background: #1a1a1a; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
 .footer-brand p {
   font-size: 0.875rem;
   color: var(--text-secondary);
