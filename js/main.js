@@ -136,25 +136,22 @@ const initDocsSidebar = () => {
   });
 };
 
-// Hero Particles Animation (hero section only)
+// Hero Particles Animation (hero section only) - lime only
 const initHeroParticles = () => {
   const container = document.getElementById('hero-particles');
   if (!container) return;
   
-  const colors = ['#C8E614', '#06b6d4', '#a78bfa', '#f9a8d4'];
-  
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 20; i++) {
     const particle = document.createElement('div');
     particle.className = 'hero-particle';
     
-    const size = 4 + Math.random() * 5;
+    const size = 3 + Math.random() * 4;
     const x = Math.random() * 100;
     const y = Math.random() * 80;
-    const duration = 6 + Math.random() * 8;
+    const duration = 8 + Math.random() * 10;
     const delay = Math.random() * 5;
-    const moveX = -20 + Math.random() * 40;
-    const moveY = -40 + Math.random() * 80;
-    const color = colors[Math.floor(Math.random() * colors.length)];
+    const moveX = -15 + Math.random() * 30;
+    const moveY = -30 + Math.random() * 60;
     
     particle.style.cssText = `
       left: ${x}%;
@@ -164,46 +161,14 @@ const initHeroParticles = () => {
       --delay: ${delay}s;
       --moveX: ${moveX}px;
       --moveY: ${moveY}px;
-      --color: ${color};
+      --color: #C8E614;
     `;
     
     container.appendChild(particle);
   }
 };
 
-// Global Floating Particles (every page)
-const initGlobalParticles = () => {
-  const container = document.getElementById('global-particles');
-  if (!container) return;
-
-  const colors = ['#C8E614', '#06b6d4', '#a78bfa', '#f9a8d4', '#22c55e'];
-
-  for (let i = 0; i < 15; i++) {
-    const p = document.createElement('div');
-    p.className = 'global-particle';
-
-    const size = 3 + Math.random() * 4;
-    const x = Math.random() * 100;
-    const dur = 15 + Math.random() * 20;
-    const del = Math.random() * 10;
-    const drift = -30 + Math.random() * 60;
-    const op = 0.15 + Math.random() * 0.2;
-    const color = colors[Math.floor(Math.random() * colors.length)];
-
-    p.style.cssText = `
-      left: ${x}%;
-      width: ${size}px;
-      height: ${size}px;
-      background: ${color};
-      --dur: ${dur}s;
-      --del: ${del}s;
-      --drift: ${drift}px;
-      --op: ${op};
-    `;
-
-    container.appendChild(p);
-  }
-};
+// Global Floating Particles - removed
 
 // Scroll Progress Indicator
 const initScrollProgress = () => {
@@ -342,7 +307,6 @@ document.addEventListener('DOMContentLoaded', () => {
   animateCountersSmooth();
   initDocsSidebar();
   initHeroParticles();
-  initGlobalParticles();
   initScrollProgress();
   initRipple();
   initSectionTransitions();
