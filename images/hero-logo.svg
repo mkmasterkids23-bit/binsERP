@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="100" viewBox="0 0 120 100">
-  <rect width="120" height="100" fill="#111"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="150" viewBox="0 0 120 100">
+  <rect width="120" height="100" fill="#fff"/>
   <!-- B Symbol -->
   <path d="M35 15 L35 45 L55 45 Q65 45 65 35 Q65 25 55 25 L45 25 L45 15 Z" fill="#C8E614"/>
   <path d="M35 45 L35 75 L55 75 Q68 75 68 60 Q68 45 55 45 Z" fill="#C8E614"/>
-  <circle cx="50" cy="55" r="6" fill="#111"/>
+  <circle cx="50" cy="55" r="6" fill="#fff"/>
   <!-- Text "Bins" -->
   <text x="60" y="90" font-family="Arial, sans-serif" font-weight="800" font-size="22" fill="#C8E614">Bins</text>
 </svg>

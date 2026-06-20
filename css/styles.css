@@ -135,7 +135,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .logo { display: flex; align-items: center; }
-.logo img { height: 40px; width: auto; padding: 0.4rem 0.75rem; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.logo img { height: 50px; width: auto; padding: 0.4rem 0.75rem; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
 .logo .dark-logo { display: none; }
 [data-theme="dark"] .logo .light-logo { display: none; }
 [data-theme="dark"] .logo .dark-logo { display: block; }
@@ -374,9 +374,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .hero-logo {
-  height: 60px;
+  height: 80px;
   width: auto;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
