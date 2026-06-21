@@ -414,41 +414,4 @@ const initImageLazyLoad = () => {
   images.forEach(img => imageObserver.observe(img));
 };
 
-// Cursor Follower (Desktop only)
-const initCursorFollower = () => {
-  if (window.innerWidth < 768) return;
-  
-  const cursor = document.createElement('div');
-  cursor.className = 'cursor-follower';
-  cursor.innerHTML = '<div class="cursor-dot"></div><div class="cursor-ring"></div>';
-  document.body.appendChild(cursor);
-  
-  const dot = cursor.querySelector('.cursor-dot');
-  const ring = cursor.querySelector('.cursor-ring');
-  
-  let mouseX = 0, mouseY = 0;
-  let ringX = 0, ringY = 0;
-  
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
-  });
-  
-  const animateRing = () => {
-    ringX += (mouseX - ringX) * 0.15;
-    ringY += (mouseY - ringY) * 0.15;
-    ring.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`;
-    requestAnimationFrame(animateRing);
-  };
-  animateRing();
-  
-  // Add hover effects for interactive elements
-  document.querySelectorAll('a, button, .card-float, .btn').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-  });
-};
-
-// Initialize cursor on load
-document.addEventListener('DOMContentLoaded', initCursorFollower);
+// Cursor follower removed

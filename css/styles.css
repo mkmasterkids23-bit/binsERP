@@ -2533,42 +2533,5 @@ body {
   box-shadow: 0 0 30px var(--lime-glow);
 }
 
-/* ========== CURSOR FOLLOWER ========== */
-.cursor-follower {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 10000;
-  mix-blend-mode: difference;
-}
-
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--lime);
-  border-radius: 50%;
-  position: fixed;
-  transition: transform 0.1s ease;
-}
-
-.cursor-ring {
-  width: 32px;
-  height: 32px;
-  border: 2px solid var(--lime);
-  border-radius: 50%;
-  position: fixed;
-  transition: all 0.15s ease;
-  opacity: 0.5;
-}
-
-.cursor-ring.hover {
-  transform: scale(1.5) !important;
-  border-color: var(--lime);
-  background: rgba(200, 230, 20, 0.1);
-}
-
-@media (max-width: 768px) {
-  .cursor-follower { display: none; }
-}
+/* Cursor follower removed */
 
