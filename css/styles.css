@@ -94,7 +94,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .logo { display: flex; align-items: center; }
-.logo img { height: 45px; width: auto; padding: 0.3rem 0.6rem; background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.logo img { height: 36px; width: auto; padding: 0.25rem 0.5rem; background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
 .logo .dark-logo { display: none; }
 [data-theme="dark"] .logo .light-logo { display: none; }
 [data-theme="dark"] .logo .dark-logo { display: block; }
